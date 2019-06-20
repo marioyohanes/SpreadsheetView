@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension IndexPath {
+extension IndexPath {
     public var column: Int {
         return section
     }
