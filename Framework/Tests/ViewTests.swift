@@ -137,8 +137,7 @@ class ViewTests: XCTestCase {
         XCTAssertEqual(spreadsheetView.frame, spreadsheetView.window!.frame)
         if #available(iOS 11.0, *) {
             #if swift(>=3.2)
-            XCTAssertEqual(spreadsheetView.adjustedContentInset.top,
-                           UIApplication.shared.statusBarFrame.height + viewController.navigationController!.navigationBar.frame.height)
+            XCTAssertEqual(spreadsheetView.adjustedContentInset.top, viewController.topLayoutGuide.length)
             XCTAssertEqual(spreadsheetView.adjustedContentInset.left, 0)
             XCTAssertEqual(spreadsheetView.adjustedContentInset.right, 0)
             XCTAssertEqual(spreadsheetView.adjustedContentInset.bottom, viewController.bottomLayoutGuide.length)
@@ -146,11 +145,10 @@ class ViewTests: XCTestCase {
 
             XCTAssertEqual(spreadsheetView.contentInset, .zero)
         } else {
-            XCTAssertEqual(spreadsheetView.contentInset.top,
-                           UIApplication.shared.statusBarFrame.height + viewController.navigationController!.navigationBar.frame.height)
+            XCTAssertEqual(spreadsheetView.contentInset.top, viewController.topLayoutGuide.length)
             XCTAssertEqual(spreadsheetView.contentInset.left, 0)
             XCTAssertEqual(spreadsheetView.contentInset.right, 0)
-            XCTAssertEqual(spreadsheetView.contentInset.bottom, 0)
+            XCTAssertEqual(spreadsheetView.contentInset.bottom, viewController.bottomLayoutGuide.length)
         }
     }
 
@@ -176,20 +174,18 @@ class ViewTests: XCTestCase {
         XCTAssertEqual(spreadsheetView.frame, spreadsheetView.window!.frame)
         if #available(iOS 11.0, *) {
             #if swift(>=3.2)
-            XCTAssertEqual(spreadsheetView.adjustedContentInset.top,
-                           UIApplication.shared.statusBarFrame.height + viewController.navigationController!.navigationBar.frame.height)
+            XCTAssertEqual(spreadsheetView.adjustedContentInset.top, viewController.topLayoutGuide.length)
             XCTAssertEqual(spreadsheetView.adjustedContentInset.left, 0)
             XCTAssertEqual(spreadsheetView.adjustedContentInset.right, 0)
-            XCTAssertEqual(spreadsheetView.adjustedContentInset.bottom, viewController.tabBarController!.tabBar.frame.height)
+            XCTAssertEqual(spreadsheetView.adjustedContentInset.bottom, viewController.bottomLayoutGuide.length)
             #endif
 
             XCTAssertEqual(spreadsheetView.contentInset, .zero)
         } else {
-            XCTAssertEqual(spreadsheetView.contentInset.top,
-                           UIApplication.shared.statusBarFrame.height + viewController.navigationController!.navigationBar.frame.height)
+            XCTAssertEqual(spreadsheetView.contentInset.top, viewController.topLayoutGuide.length)
             XCTAssertEqual(spreadsheetView.contentInset.left, 0)
             XCTAssertEqual(spreadsheetView.contentInset.right, 0)
-            XCTAssertEqual(spreadsheetView.contentInset.bottom, viewController.tabBarController!.tabBar.frame.height)
+            XCTAssertEqual(spreadsheetView.contentInset.bottom, viewController.bottomLayoutGuide.length)
         }
     }
 

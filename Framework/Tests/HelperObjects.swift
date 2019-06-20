@@ -48,6 +48,17 @@ class SpreadsheetViewController: UIViewController, SpreadsheetViewDataSource, Sp
 
         view.addSubview(spreadsheetView)
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if #available(iOS 11, *) {
+            // do nothing
+        } else if navigationController != nil, spreadsheetView.contentInset == .zero {
+            spreadsheetView.contentInset.top = topLayoutGuide.length
+            spreadsheetView.contentInset.bottom = bottomLayoutGuide.length
+        }
+    }
 
     // DataSource
 

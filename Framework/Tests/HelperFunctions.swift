@@ -34,6 +34,14 @@ func defaultViewController(parameters: Parameters) -> SpreadsheetViewController 
     return viewController
 }
 
+func defaultInsets() -> UIEdgeInsets {
+    if #available(iOS 11, *) {
+        return .zero
+    } else {
+        return UIEdgeInsets(top: UIApplication.shared.statusBarFrame.height, left: 0, bottom: 0, right: 0)
+    }
+}
+
 func showViewController(viewController: UIViewController) {
     let window = UIWindow()
     window.backgroundColor = .white

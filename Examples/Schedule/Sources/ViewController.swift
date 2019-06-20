@@ -41,8 +41,6 @@ class ViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetVi
         spreadsheetView.dataSource = self
         spreadsheetView.delegate = self
 
-        spreadsheetView.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
-
         spreadsheetView.intercellSpacing = CGSize(width: 4, height: 1)
         spreadsheetView.gridStyle = .none
 
@@ -56,6 +54,17 @@ class ViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetVi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         spreadsheetView.flashScrollIndicators()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if #available(iOS 11, *) {
+            // do nothing
+        } else if spreadsheetView.contentInset == .zero {
+            spreadsheetView.contentInset.top = topLayoutGuide.length
+            spreadsheetView.contentInset.bottom = bottomLayoutGuide.length
+        }
     }
 
     // MARK: DataSource
